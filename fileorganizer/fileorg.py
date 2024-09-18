@@ -10,7 +10,7 @@ doc_path = "C:\\Users\\Jj\\Documents\\school works\\Documents"
 doc_img = "C:\\Users\\Jj\\Documents\\school works\\Images"
 doc_vid = "C:\\Users\\Jj\\Documents\\school works\\Videos"
 doc_aud = "C:\\Users\\Jj\\Documents\\school works\\Audio"
-sub_folder = {"UTS", "Calculus", "MMW", "CED", "STS", "Pco", "Chemistry", "Core Values", "PLD", "PATHFIT"}  
+sub_folder = ["UTS", "Calculus", "MMW", "CED", "STS", "Pco", "Chemistry", "Core Values", "PLD", "PATHFIT"]  
 gen_folder = ["Documents", "Images", "Videos", "Audio"]
 image = [".jpeg", ".png", ".jpg", ".gif"]
 videos = [".mp4", ".avi"]
@@ -61,7 +61,7 @@ class Organize(FileSystemEventHandler):
   def check_docs(self, file, name):
     for subj in sub_folder:
       for ext, folder in dir_file.items():
-          if name.endswith(ext) and (subj.lower() in name or subj.upper()in name or subj in name):
+          if name.endswith(ext) and (subj.casefold() in name.casefold()):
             move_file(f"{doc_path}\\{subj}\\{folder}", file, name)
             print("moved")
 
